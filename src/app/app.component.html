@@ -8,10 +8,12 @@
 </div>
 <div class="chart">
   <div class="chart-controls">
-    <select class="chart-control" [value]="range.start" (change)="changeRange($event, 'start')">
+    <label class="chart-label" for="control-1">Start date: </label>
+    <select id="control-1" class="chart-control" [value]="range.start" (change)="changeRange($event, 'start')">
       <option *ngFor="let option of startOptions" [value]="option">{{ option }}</option>
     </select>
-    <select class="chart-control" [value]="range.end" (change)="changeRange($event, 'end')">
+    <label class="chart-label" for="control-2">End date: </label>
+    <select id="control-2" class="chart-control" [value]="range.end" (change)="changeRange($event, 'end')">
       <option *ngFor="let option of endOptions" [value]="option">{{ option }}</option>
     </select>    
   </div>

@@ -73,16 +73,17 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   updateChart() {
-    const offsetLeft = range(this.START_YEAR, this.range.start).reduce((acc, year) => {
-      acc += getDaysInYear(new Date(year, 1, 1));
-      return acc;
-    }, 0);
-    const offsetRight = (this[this.currentView].length - 1) - range(this.range.end, this.END_YEAR).reduce((acc, year) => {
-      acc += getDaysInYear(new Date(year, 1, 1));
-      return acc;
-    }, 0);
+    const offsetLeft = this.getOffset(this.START_YEAR, this.range.start);
+    const offsetRight = (this[this.currentView].length - 1) - this.getOffset(this.range.end, this.END_YEAR);
     const data = this[this.currentView].slice(offsetLeft, offsetRight);
     this._worker.postMessage({ data });
+  }
+
+  getOffset(start, end) {
+    return range(start, end).reduce((acc, year) => {
+      acc += getDaysInYear(new Date(year, 1, 1));
+      return acc;
+    }, 0);
   }
 
   updateOptions() {

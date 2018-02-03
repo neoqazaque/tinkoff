@@ -21,6 +21,17 @@
     height: 250px;
 }
 
+.chart-controls {
+    display: flex;
+    align-items: center;
+    height: 46px;
+}
+
+.chart-label {
+    font: 14px/1 'Helvetica', sans-serif;
+    margin: 0 16px;
+}
+
 #line {
     stroke: #2296f3;
     stroke-linecap: round;
