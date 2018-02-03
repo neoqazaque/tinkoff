@@ -1,5 +1,5 @@
 onmessage = (event) => {
-    let { data } = event.data;
+    const { data } = event.data;
     const chunks = splitIntoChunks(data);
     postMessage({ chunks });
 }
