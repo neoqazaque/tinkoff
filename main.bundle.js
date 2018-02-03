@@ -49,11 +49,12 @@ module.exports = "<div class=\"sidebar\">\n  <div class=\"button\" role=\"button
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_d3__ = __webpack_require__("../../../../d3/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash__ = __webpack_require__("../../../../lodash/lodash.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_date_fns__ = __webpack_require__("../../../../date-fns/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_date_fns___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_date_fns__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_d3__ = __webpack_require__("../../../../d3/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash__ = __webpack_require__("../../../../lodash/lodash.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_date_fns__ = __webpack_require__("../../../../date-fns/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_date_fns___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_date_fns__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63,6 +64,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -81,7 +83,7 @@ var AppComponent = /** @class */ (function () {
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._worker = new Worker('/assets/worker.js');
+        this._worker = new Worker(__WEBPACK_IMPORTED_MODULE_2__angular_common__["a" /* APP_BASE_HREF */] + "/assets/worker.js");
         this._worker.onmessage = function (_a) {
             var data = _a.data;
             var chunks = data.chunks;
@@ -113,12 +115,12 @@ var AppComponent = /** @class */ (function () {
         this.updateOptions();
     };
     AppComponent.prototype.updateChart = function () {
-        var offsetLeft = Object(__WEBPACK_IMPORTED_MODULE_3_lodash__["range"])(this.START_YEAR, this.range.start).reduce(function (acc, year) {
-            acc += Object(__WEBPACK_IMPORTED_MODULE_4_date_fns__["getDaysInYear"])(new Date(year, 1, 1));
+        var offsetLeft = Object(__WEBPACK_IMPORTED_MODULE_4_lodash__["range"])(this.START_YEAR, this.range.start).reduce(function (acc, year) {
+            acc += Object(__WEBPACK_IMPORTED_MODULE_5_date_fns__["getDaysInYear"])(new Date(year, 1, 1));
             return acc;
         }, 0);
-        var offsetRight = (this[this.currentView].length - 1) - Object(__WEBPACK_IMPORTED_MODULE_3_lodash__["range"])(this.range.end, this.END_YEAR).reduce(function (acc, year) {
-            acc += Object(__WEBPACK_IMPORTED_MODULE_4_date_fns__["getDaysInYear"])(new Date(year, 1, 1));
+        var offsetRight = (this[this.currentView].length - 1) - Object(__WEBPACK_IMPORTED_MODULE_4_lodash__["range"])(this.range.end, this.END_YEAR).reduce(function (acc, year) {
+            acc += Object(__WEBPACK_IMPORTED_MODULE_5_date_fns__["getDaysInYear"])(new Date(year, 1, 1));
             return acc;
         }, 0);
         var data = this[this.currentView].slice(offsetLeft, offsetRight);
@@ -126,8 +128,8 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.prototype.updateOptions = function () {
         var _a = this.range, start = _a.start, end = _a.end;
-        this.startOptions = Object(__WEBPACK_IMPORTED_MODULE_3_lodash__["range"])(this.START_YEAR, end + 1);
-        this.endOptions = Object(__WEBPACK_IMPORTED_MODULE_3_lodash__["range"])(start, this.END_YEAR + 1);
+        this.startOptions = Object(__WEBPACK_IMPORTED_MODULE_4_lodash__["range"])(this.START_YEAR, end + 1);
+        this.endOptions = Object(__WEBPACK_IMPORTED_MODULE_4_lodash__["range"])(start, this.END_YEAR + 1);
     };
     AppComponent.prototype.isActiveView = function (view) {
         return this.currentView === view;
@@ -142,19 +144,19 @@ var AppComponent = /** @class */ (function () {
             left: 50,
             right: 50
         };
-        var minMax = Object(__WEBPACK_IMPORTED_MODULE_2_d3__["b" /* extent */])(data);
-        var yScale = Object(__WEBPACK_IMPORTED_MODULE_2_d3__["e" /* scaleLinear */])()
+        var minMax = Object(__WEBPACK_IMPORTED_MODULE_3_d3__["b" /* extent */])(data);
+        var yScale = Object(__WEBPACK_IMPORTED_MODULE_3_d3__["e" /* scaleLinear */])()
             .domain(minMax)
             .range([height - margin.bottom, margin.top]);
-        var yAxis = Object(__WEBPACK_IMPORTED_MODULE_2_d3__["a" /* axisLeft */])(yScale)
+        var yAxis = Object(__WEBPACK_IMPORTED_MODULE_3_d3__["a" /* axisLeft */])(yScale)
             .ticks(6)
             .tickSizeInner(-width + margin.right + margin.left);
-        var $svg = Object(__WEBPACK_IMPORTED_MODULE_2_d3__["f" /* select */])(this.svg.nativeElement);
-        var format = Object(__WEBPACK_IMPORTED_MODULE_2_d3__["c" /* format */])('.3n');
-        var xScale = Object(__WEBPACK_IMPORTED_MODULE_2_d3__["e" /* scaleLinear */])()
+        var $svg = Object(__WEBPACK_IMPORTED_MODULE_3_d3__["f" /* select */])(this.svg.nativeElement);
+        var format = Object(__WEBPACK_IMPORTED_MODULE_3_d3__["c" /* format */])('.3n');
+        var xScale = Object(__WEBPACK_IMPORTED_MODULE_3_d3__["e" /* scaleLinear */])()
             .domain([0, data.length - 1])
             .rangeRound([margin.left, width - margin.right]);
-        var line = Object(__WEBPACK_IMPORTED_MODULE_2_d3__["d" /* line */])()
+        var line = Object(__WEBPACK_IMPORTED_MODULE_3_d3__["d" /* line */])()
             .x(function (data, index) { return xScale(index); })
             .y(yScale);
         var d = line(data);
