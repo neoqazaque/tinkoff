@@ -17,5 +17,4 @@ function splitIntoChunks(data) {
         chunks.push(avgChunk);
     }
     return chunks;
-
 }

@@ -1,5 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { APP_BASE_HREF } from '@angular/common';
 import { Temperature } from '../interfaces/temperature.interface';
 import { select, max, scaleLinear, line as d3Line, axisLeft, axisBottom, extent, format as d3Format } from 'd3';
 import { Subscription } from 'rxjs/Subscription';
@@ -34,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this._worker = new Worker('/assets/worker.js');
+    this._worker = new Worker(`${APP_BASE_HREF}/assets/worker.js`);
     this._worker.onmessage = ({ data }) => {
       const { chunks } = data;
       this.renderChart(chunks);
