@@ -1,0 +1,51 @@
+:host {
+    display: flex;
+    height: 100%;
+}
+
+.sidebar {
+    flex: 0 0 auto;
+    width: 250px;
+    background-color: #f3f3f3;
+}
+
+.chart {
+    flex: 1 1 0;
+    min-width: 500px;
+    padding-right: 50px;
+}
+
+.chart-svg {
+    margin-top: 50px;
+    width: 100%;
+    height: 250px;
+}
+
+#line {
+    stroke: #2296f3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 4px;
+}
+
+.button {
+    display: block;
+    cursor: pointer;
+    background-color: #f3f3f3;
+    color: #000;
+    font: 14px/1 'Helvetica', sans-serif;
+    padding: 16px 20px;
+}
+
+.button:hover {
+    background-color: #e2e2e2;
+}
+
+.button.active {
+    background-color: #2296f3;
+    color: #fff;
+}
+
+.button.active:hover {
+    background-color: #3da3f5;
+}

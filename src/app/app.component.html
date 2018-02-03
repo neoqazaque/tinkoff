@@ -1,0 +1,26 @@
+<div class="sidebar">
+  <div class="button" role="button" [class.active]="isActiveView('temperatures')" (click)="changeView('temperatures')">
+    Temperature
+  </div>
+  <div class="button" role="button" [class.active]="isActiveView('precipitations')" (click)="changeView('precipitations')">
+    Precipitation
+  </div>
+</div>
+<div class="chart">
+  <div class="chart-controls">
+    <select class="chart-control" [value]="range.start" (change)="changeRange($event, 'start')">
+      <option *ngFor="let option of startOptions" [value]="option">{{ option }}</option>
+    </select>
+    <select class="chart-control" [value]="range.end" (change)="changeRange($event, 'end')">
+      <option *ngFor="let option of endOptions" [value]="option">{{ option }}</option>
+    </select>    
+  </div>
+  <svg #svg class="chart-svg">
+    <g class="y-axis" transform="translate(50, 0)"> </g>
+    <g>
+        <path fill="none" id="line"></path>
+    </g>
+    <g class="labels"></g>
+    <g class="points"></g>
+  </svg> 
+</div>
