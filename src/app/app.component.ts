@@ -16,8 +16,6 @@ type ViewType = 'temperatures' | 'precipitations';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  private readonly START_YEAR = 1881;
-  private readonly END_YEAR = 2006;
   @ViewChild('svg') svg: ElementRef;
   currentView: ViewType = 'temperatures';
   range = {
@@ -28,6 +26,8 @@ export class AppComponent implements OnInit, OnDestroy {
   endOptions: Array<number>;
   temperatures: Array<Temperature>;
   precipitations: Array<Temperature>;
+  private readonly START_YEAR = 1881;
+  private readonly END_YEAR = 2006;
   private _worker: Worker;
   private _temSubscription: Subscription;
   private _preSubscription: Subscription;
@@ -50,8 +50,6 @@ export class AppComponent implements OnInit, OnDestroy {
     })
     this.updateOptions();
   }
-
-
 
   ngOnDestroy() {
     this._worker.terminate();
@@ -118,12 +116,10 @@ export class AppComponent implements OnInit, OnDestroy {
     const xScale = scaleLinear()
       .domain([0, data.length - 1])
       .rangeRound([margin.left, width - margin.right]);
-
     const line = d3Line<number>()
       .x((data, index) => xScale(index))
       .y(yScale);
     const d = line(data);
-
     const $axis = $svg
       .select('.y-axis')
       .call(yAxis);
@@ -146,7 +142,6 @@ export class AppComponent implements OnInit, OnDestroy {
       .transition()
       .attr('d', d);
 
-
     const labels = $svg
       .select('.labels')
       .selectAll('text')
@@ -164,7 +159,5 @@ export class AppComponent implements OnInit, OnDestroy {
       .attr('dy', -15)
       .attr('font-size', '10px')
       .attr('font-family', 'Helvetica');
-
   }
-
 }
