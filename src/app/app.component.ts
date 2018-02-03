@@ -116,7 +116,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .domain([0, data.length - 1])
       .rangeRound([margin.left, width - margin.right]);
 
-    const line = d3Line()
+    const line = d3Line<number>()
       .x((data, index) => xScale(index))
       .y(yScale);
     const d = line(data);
